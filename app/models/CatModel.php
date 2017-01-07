@@ -8,7 +8,7 @@ class CatModel extends Dmodel{
 	}
 
 	public function catlist($table){
-		$sql = "SELECT * FROM $table";
+		$sql = "SELECT * FROM $table order by id desc";
 		return $this->db->select($sql);
 	} 
 	public function catbyid($table, $id){
