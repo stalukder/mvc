@@ -9,9 +9,9 @@
 				<li><a href="<?php echo BASE_URL; ?>/Admin/addcategory">Add CAtegory</a></li>
 				<li><a href="<?php echo BASE_URL; ?>/Admin/category">Category</a></li>
 			</ul> 
-			<h4>Post Option</h4>
+			<h4>Article Option</h4>
 			<ul>
-				<li><a href="">Login</a></li>
-				<li><a href="">Logout</a></li>
+				<li><a href="<?php echo BASE_URL; ?>/Admin/addarticle">Add Article</a></li>
+				<li><a href="<?php echo BASE_URL; ?>/Admin/article">Article List</a></li>
 			</ul> 
 		</td> 

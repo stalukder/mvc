@@ -7,8 +7,8 @@ class PostModel extends Dmodel{
 		parent::__construct();
 	}
 
-	public function allPost($table){
-		$sql = "SELECT * FROM $table ORDER BY ID DESC LIMIT 3 ";
+	public function allPost($table ){
+		$sql = "SELECT * FROM $table ORDER BY ID DESC ";
 		return $this->db->select($sql);
 	}  
 	

@@ -29,7 +29,7 @@ foreach ($cat as $key => $value) {
 		<th><?php echo $value['title'] ?></th>
 		<th>
 			<a href="<?php echo BASE_URL; ?>/Admin/editCat/<?php echo $value['id']; ?>">Edit</a> ||
-			<a href="<?php echo BASE_URL; ?>/Admin/deleteCat/<?php echo $value['id']; ?>">Delete</a>
+			<a onclick="return confirm('Are you confirm?');" href="<?php echo BASE_URL; ?>/Admin/deleteCat/<?php echo $value['id']; ?>">Delete</a>
 		</th>
 	</tr>
 <?php 

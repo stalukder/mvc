@@ -13,7 +13,7 @@ class Database extends PDO{
 	public function select($sql,$data = array(), $fetchStyle = PDO::FETCH_ASSOC){  
 		$stmt = $this->prepare($sql);
 		foreach ($data as $key => $value) { 
-			$stmt->bindParam($key, $value);
+			$stmt->bindValue($key, $value);
 		}
 		$stmt->execute();
 		return $stmt->fetchAll($fetchStyle); 
@@ -24,7 +24,7 @@ class Database extends PDO{
 		$sql = "INSERT INTO $table($keys) VALUES($values)";
 		$stmt = $this->prepare($sql);
 		foreach ($data as $key => $value) { 
-			$stmt->bindParam(":$key", $value);
+			$stmt->bindValue(":$key", $value);
 		} 
 		return $stmt->execute();
 	}
@@ -37,7 +37,7 @@ class Database extends PDO{
 		$sql = "UPDATE $table SET $updateKeys WHERE $cond";
 		$stmt = $this->prepare($sql);
 		foreach ($data as $key => $value) { 
-			$stmt->bindParam(":$key", $value);
+			$stmt->bindValue(":$key", $value);
 		} 
 		return $stmt->execute();
 	}
