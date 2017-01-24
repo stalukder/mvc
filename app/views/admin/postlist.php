@@ -11,7 +11,7 @@ if(!empty($_GET['msg'])){
 } 
  ?>
 
-<h2>Category List </h2><hr>
+<h2>Article List </h2><hr>
 
 
 <table id="table_id" class="display"  data-page-length='5'>

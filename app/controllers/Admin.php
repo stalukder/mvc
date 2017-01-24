@@ -105,7 +105,13 @@ class Admin extends DController{
 	public function addarticle(){
 		$this->load->view('admin/header');
 		$this->load->view('admin/sidebar');
-		$this->load->view('admin/addpost');
+
+		$tableC = "category"; 
+		$data = array();
+		$catmodel = $this->load->model('CatModel');
+		$data['cat'] = $catmodel->catlist($tableC); 
+
+		$this->load->view('admin/addpost',$data);
 		$this->load->view('admin/footer');
 	}
 	public function article(){
@@ -123,6 +129,36 @@ class Admin extends DController{
 
 		$this->load->view('admin/postlist',$data); 
 		$this->load->view('admin/footer');		
+	}
+
+	public function addNewPost(){	
+		$tableP = "post";
+
+		if(isset($_POST['submit'])){
+	
+
+			$title = $_POST['title'];
+			$content = $_POST['mytext'];
+			$cat = $_POST['cat'];
+			$data = array(
+				'title'=> $title,
+				'mytext'=> $content, 
+				'cat'=> $cat 
+				);
+			$postModel = $this->load->model('PostModel');
+			$rslt = $postModel->InsertPost($tableP, $data); 
+			$mdata = array();
+			if($rslt){
+				$mdata['msg'] = "Successfully Added";
+			}else{
+				$mdata['msg'] = "Not Added";
+			}  
+			$url = BASE_URL."/Admin/article?msg=".urlencode(serialize($mdata));
+			header("Location: $url");
+
+		}else{
+			header("Location:".BASE_URL."/Admin/");
+		}
 	}
 
 }

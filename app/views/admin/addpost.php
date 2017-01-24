@@ -8,7 +8,7 @@ if(isset($msg)){
 
  ?>
  <br>
-<form action="<?php echo BASE_URL; ?>/Admin/insertCategory" method="post">
+ <form action="<?php echo BASE_URL; ?>/Admin/addNewPost" method="post"> 
 	<table>
 		<tr>
 			<td>Title:</td>
@@ -16,21 +16,24 @@ if(isset($msg)){
 		</tr>
 		<tr>
 			<td>Content:</td>
-			<td><textarea name="mytext" id="" cols="30" rows="10"></textarea></td><script>
-    CKEDITOR.replace( 'mytext' );
-</script>
+			<td><textarea name="mytext" id="" cols="30" rows="10"></textarea></td>
+			<script>
+			    CKEDITOR.replace( 'mytext' );
+			</script>
 		</tr>
 		<tr>
 			<td>Category:</td>
 			<td><select name="cat" id="">
-				<option value="">One</option>
-				<option value="">Two</option>
-				<option value="">Three</option>
+				<option value="0">Select One</option>
+				<?php 
+				foreach ($cat as $key => $catn) { ?>
+				<option value="<?php echo $catn['id']; ?>"><?php echo $catn['title']; ?></option> 
+				<?php }  ?> 
 			</select></td>
 		</tr>
 		<tr>
 			<td></td>
-			<td><input type="submit" name="submit"></td>
+			<td><input type="submit" name="submit" value="Submit"></td>
 		</tr>
 	</table>
 </form>

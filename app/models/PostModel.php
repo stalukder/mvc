@@ -47,4 +47,9 @@ class PostModel extends Dmodel{
 		}  
 		return $this->db->select($sql);
 	}
+
+	public function InsertPost($table, $data){ 
+		return $this->db->insert($table, $data);  
+	}
+
 }
