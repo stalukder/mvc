@@ -132,14 +132,20 @@ class Admin extends DController{
 	}
 
 	public function addNewPost(){	
-		$tableP = "post";
+		if(!($_POST)){
+			header("Location: ".BASE_URL."/Admin/addarticle");
+		}
 
-		if(isset($_POST['submit'])){
-	
+		$input = $this->load->validation('Dform');
+		$input->post('title')->isEmpty()->length(10,500);
+		$input->post('mytext')->isEmpty();
+		$input->post('cat')->isEmpty();
 
-			$title = $_POST['title'];
-			$content = $_POST['mytext'];
-			$cat = $_POST['cat'];
+		if($input->submit()){
+			$tableP = "post";
+			$title = $input->value['title'];
+			$content = $input->value['mytext'];
+			$cat = $input->value['cat'];
 			$data = array(
 				'title'=> $title,
 				'mytext'=> $content, 
@@ -157,7 +163,19 @@ class Admin extends DController{
 			header("Location: $url");
 
 		}else{
-			header("Location:".BASE_URL."/Admin/");
+			$this->load->view('admin/header');
+			$this->load->view('admin/sidebar');
+
+			$tableC = "category"; 
+			$data = array();
+
+			$catmodel = $this->load->model('CatModel');
+			$data['cat'] = $catmodel->catlist($tableC); 
+
+			$data['posterrors'] = $input->errors;
+
+			$this->load->view('admin/addpost',$data);
+			$this->load->view('admin/footer');
 		}
 	}
 

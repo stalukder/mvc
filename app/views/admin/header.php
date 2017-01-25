@@ -51,6 +51,12 @@ a.cat {
   height: 30px;
   width: 150px;
 }
+.error{
+  border: 1px solid red;
+  padding: 10px;
+  margin:10px;
+  color:red;
+}
 </style>
 </head>
 <body>

@@ -15,4 +15,8 @@ class Load{
 		include "app/models/".$fnm.".php"; 
 		return new $fnm();
 	}
+	public function validation($fnm){
+		include "app/validations/".$fnm.".php"; 
+		return new $fnm();
+	}
 }

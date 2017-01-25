@@ -5,6 +5,29 @@
 if(isset($msg)){
 	echo $msg;
 }
+if(isset($posterrors)){
+	echo "<div class=\"error\">";
+	foreach ($posterrors as $key => $value) {
+		 switch ($key) {
+		 	case 'title':
+		 		foreach ($value as $key => $val) {
+		 			echo "Title ". $val. "<br>";
+		 		}
+		 		break;
+		 	case 'mytext':
+		 		foreach ($value as $key => $val) {
+		 			echo "Content ". $val. "<br>";
+		 		}
+		 		break;
+		 	case 'cat':
+		 		foreach ($value as $key => $val) {
+		 			echo "Category ". $val. "<br>";
+		 		}
+		 		break; 
+		 }
+	}
+	echo "</div>";
+}
 
  ?>
  <br>

@@ -1,6 +1,9 @@
 		<td width="30%"> 
 			<h4>Site Option</h4>
 			<ul>
+				<li><a href="<?php echo BASE_URL; ?>/Admin">Home</a></li> 
+			</ul>  
+			<ul>
 				<li><a href="<?php echo BASE_URL; ?>/Admin">Login</a></li>
 				<li><a href="<?php echo BASE_URL; ?>/Login/logout">Logout</a></li>
 			</ul>  
