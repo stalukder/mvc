@@ -179,4 +179,64 @@ class Admin extends DController{
 		}
 	}
 
+	public function editPost($id=NULL){
+		$this->load->view('admin/header');
+		$this->load->view('admin/sidebar');
+
+		$tablep = "post"; 
+		$tableC = "category"; 
+		$data = array();
+		$postmodel = $this->load->model('PostModel');
+		$data['postbyid'] = $postmodel->AdpostById($tablep, $id); 
+
+		$catmodel = $this->load->model('CatModel');
+		$data['cat'] = $catmodel->catlist($tableC); 
+
+		$this->load->view('admin/editpost',$data);
+		$this->load->view('admin/footer');
+	}
+
+	public function updatePost($id=NULL){
+		$input = $this->load->validation('Dform');
+		$input->post('title');
+		$input->post('mytext');
+		$input->post('cat');
+		$cond = "id=$id";
+
+		$tableP = "post";
+		$title = $input->value['title'];
+		$content = $input->value['mytext'];
+		$cat = $input->value['cat'];
+		$data = array(
+			'title'=> $title,
+			'mytext'=> $content, 
+			'cat'=> $cat 
+			);
+		$postModel = $this->load->model('PostModel');
+		$rslt = $postModel->updatedPost($tableP, $data,$cond); 
+
+		$mdata = array(); 
+		if($rslt){
+			$mdata['msg'] = "Successfully Updated";
+		}else{
+			$mdata['msg'] = "Not Updated";
+		}   
+		$url = BASE_URL."/Admin/article?msg=".urlencode(serialize($mdata));
+		header("Location: $url"); 
+	}
+	public function deletePost($id = NULL){
+		$mdata = array();
+		$table = "post"; 
+		$cond = "id=$id";   
+		$postModel = $this->load->model('PostModel');
+		$rslt = $postModel->postDelete($table, $cond); 
+		if($rslt){
+			$mdata['msg'] = "Successfully Deleted";
+		}else{
+			$mdata['msg'] = "Not Deleted";
+		}
+		$url = BASE_URL."/Admin/article?msg=".urlencode(serialize($mdata));
+		header("Location: $url");   
+	}
+
 }
